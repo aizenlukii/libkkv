@@ -19,15 +19,15 @@ int main() {
     assert(status.ok() && status.ToString());
 
     status = db->Insert("key", "value");
-    assert(db.ok());
+    assert(status.ok());
 
     kkv::Slice buffer;
     status = db->Get("key", &buffer);
-    assert(db.ok());
+    assert(status.ok());
 
     const unsigned char bytes[] = { 0x00, 0xEA, 0x76, 0x61, 0x6C, 0x75, 0x65 };
     status = db->Insert("bkey", bytes);
-    assert(db.ok());
+    assert(status.ok());
 
     // Set the main pointer to a collection.
     // One collection may be opened only once.
@@ -45,7 +45,7 @@ int main() {
     // status = db->Get("key", &buffer);
     // assert(status.ok());
     //
-    // Whis will fail, because the key "key" doesn't exist in the
+    // This will fail, because the key "key" doesn't exist in the
     // "/path/to/collection" collection
 
     // Print whole collection
